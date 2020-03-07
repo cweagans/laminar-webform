@@ -5,6 +5,8 @@ params.
 
 documentation help is welcome.
 
+Works best with https://github.com/cweagans/semantic-laminar-theme
+
 ## Configuration
 
 Example config:
