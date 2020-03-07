@@ -1,0 +1,33 @@
+{{ define "header" }}
+<!doctype html>
+<html>
+    <head>
+        <base href="/">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <link rel="apple-touch-icon-precomposed" href="favicon-152.png">
+        <link rel="icon" href="favicon.ico">
+        <title>{{ .config.Title }}</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" integrity="sha256-UXesixbeLkB/UYxVTzuj/gg3+LMzgwAmg3zD+C4ZASQ=" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js" integrity="sha256-CgSoWC9w5wNmI1aN8dIMK+6DPelUEtvDr+Bc2m/0Nx8=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div id="app">
+            <nav class="ui visible thin left sidebar inverted vertical labeled icon menu">
+                <span class="item"><img class="icon" src="{{.config.LaminarURL}}/icon.png">Laminar</span>
+                <a class="item" href="{{.config.LaminarURL}}/"><i class="bar chart icon"></i>Status</a>
+                <a class="item" href="{{.config.LaminarURL}}/jobs"><i class="tasks icon"></i>Jobs</a>
+                <a class="active item" href="/"><i class="plus square outline icon"></i>Manually<br>run a job</a>
+            </nav>
+            <div class="ui main stackable padded grid pusher">
+{{end}}
+
+{{ define "footer" }}
+            </div>
+        </div>
+    </body>
+</html>
+{{end}}

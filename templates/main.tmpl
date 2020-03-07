@@ -1,0 +1,31 @@
+{{ template "header" . }}
+
+<main class="ui stackable grid">
+    <div class="ui basic segment ten wide column">
+        <h2 class="ui header">
+            Manually run a job
+            <div class="sub header">Jobs listed below can be run manually. If you don't see a job you need, please contact an administrator.</div>
+        </h2>
+    </div>
+    <div class="ui column ten wide">
+        <div class="ui very relaxed divided items">
+
+            {{ range $name, $form := .forms }}
+
+            <div class="item">
+                <div class="content">
+                    <div class="header">{{ $form.Title }}</div>
+                    <div class="description">{{ $form.Description }}</div>
+                    <div class="extra">
+                        <a href="/form/{{ $name }}" class="ui primary button">Configure<i class="right chevron icon"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            {{ end }}
+
+        </div>
+    </div>
+</main>
+
+{{ template "footer" . }}

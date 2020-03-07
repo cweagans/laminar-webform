@@ -1,0 +1,57 @@
+{{ template "header" . }}
+
+<main class="ui stackable grid">
+    <div class="ui basic segment ten wide column">
+        <h2 class="ui header">
+            {{ .form.Title }}
+            <div class="sub header">{{ .form.Description }}</div>
+        </h2>
+        <a href="/"><i class="angle left icon"></i>back to list</a>
+    </div>
+    <div class="ui column ten wide">
+
+        {{ if .validation_error }}
+        <div class="ui negative message">
+            <div class="header">Whoops!</div>
+            <p>{{ .validation_error }}</p>
+        </div>
+        {{ end }}
+
+        <form method="post" class="ui very relaxed form">
+
+            <input type="hidden" name="_csrf" value="{{.csrf_token}}">
+
+            {{ range $name, $field := .form.Fields }}
+
+            <div class="required field">
+                <label>{{ $field.Title }}</label>
+
+                {{ if eq $field.Type "select" }}
+                <select name="{{ $field.Name }}" class="ui dropdown" required="required">
+                    {{ range $field.Options }}
+                    <option value="{{ . }}">{{ . }}</option>
+                    {{ end }}
+                </select>
+                {{ end }}
+
+                {{ if eq $field.Type "text" }}
+                <input type="text" name="{{ $field.Name }}" placeholder="{{ $field.Title }}" required="required">
+                {{ end }}
+
+                <p>{{ $field.Description }}</p>
+            </div>
+
+            {{ end }}
+
+            <input type="submit" class="ui primary submit button" value="Run job">
+        </form>
+
+
+    </div>
+</main>
+
+<script type="text/javascript">
+$('select').dropdown();
+</script>
+
+{{ template "footer" . }}
