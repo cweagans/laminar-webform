@@ -26,15 +26,25 @@ release/sha256sums.txt: release/$(PROJECT_NAME).win64.tar.gz release/$(PROJECT_N
 
 release/$(PROJECT_NAME).win64.tar.gz: bin/windows/$(PROJECT_NAME).exe
 	[ -d release ] || mkdir release
-	tar czf release/$(PROJECT_NAME).win64.tar.gz -C bin/windows $(PROJECT_NAME).exe
+	tar cf release/$(PROJECT_NAME).win64.tar -C bin/windows $(PROJECT_NAME).exe
+	tar rvf release/$(PROJECT_NAME).win64.tar templates/
+	tar rvf release/$(PROJECT_NAME).win64.tar README.md
+	gzip release/$(PROJECT_NAME).win64.tar
 
 release/$(PROJECT_NAME).linux64.tar.gz: bin/linux/$(PROJECT_NAME)
 	[ -d release ] || mkdir release
-	tar czf release/$(PROJECT_NAME).linux64.tar.gz -C bin/linux $(PROJECT_NAME)
+	tar cf release/$(PROJECT_NAME).linux64.tar -C bin/linux $(PROJECT_NAME)
+	tar rvf release/$(PROJECT_NAME).linux64.tar templates/
+	tar rvf release/$(PROJECT_NAME).linux64.tar README.md
+	gzip release/$(PROJECT_NAME).linux64.tar
 
 release/$(PROJECT_NAME).darwin64.tar.gz: bin/darwin/$(PROJECT_NAME)
 	[ -d release ] || mkdir release
-	tar czf release/$(PROJECT_NAME).darwin64.tar.gz -C bin/darwin $(PROJECT_NAME)
+	tar cf release/$(PROJECT_NAME).darwin64.tar -C bin/darwin $(PROJECT_NAME)
+	tar rvf release/$(PROJECT_NAME).darwin64.tar templates/
+	tar rvf release/$(PROJECT_NAME).darwin64.tar README.md
+	gzip release/$(PROJECT_NAME).darwin64.tar
+
 
 vendor: go.sum
 	go mod vendor
